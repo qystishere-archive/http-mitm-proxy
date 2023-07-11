@@ -1,6 +1,6 @@
 {
-  "name": "qystishere-http-mitm-proxy",
-  "version": "1.0.2",
+  "name": "qih-http-mitm-proxy",
+  "version": "1.0.1",
   "description": "HTTP Man In The Middle (MITM) Proxy",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,6 +29,9 @@
     "Félicien François <felicien@tweakstyle.com>",
     "Simon Pratt <simon@pr4tt.com>",
     "JonLuca DeCaro <jonluca.decaro@gmail.com>"
+  ],
+  "files": [
+    "dist"
   ],
   "license": "MIT",
   "engines": {
