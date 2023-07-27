@@ -1,6 +1,6 @@
 {
   "name": "qih-http-mitm-proxy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "HTTP Man In The Middle (MITM) Proxy",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -34,9 +34,6 @@
     "dist"
   ],
   "license": "MIT",
-  "engines": {
-    "node": ">=8.0 <=16"
-  },
   "devDependencies": {
     "@types/mocha": "10.0.x",
     "@types/node": "18.11.x",
