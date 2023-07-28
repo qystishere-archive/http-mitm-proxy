@@ -132,7 +132,7 @@ export class Proxy implements IProxy {
         : new https.Agent({ keepAlive: this.keepAlive });
     this.forceSNI = !!options.forceSNI;
     if (this.forceSNI) {
-      console.info("SNI enabled. Clients not supporting SNI may fail");
+      // console.info("SNI enabled. Clients not supporting SNI may fail");
     }
     this.httpsPort = this.forceSNI ? options.httpsPort : undefined;
     this.sslCaDir =
@@ -168,7 +168,7 @@ export class Proxy implements IProxy {
       if (self.forceSNI) {
         // start the single HTTPS server now
         self._createHttpsServer({}, (port, httpsServer, wssServer) => {
-          console.debug(`https server started on ${port}`);
+          // console.debug(`https server started on ${port}`);
           self.httpsServer = httpsServer;
           self.wssServer = wssServer;
           self.httpsPort = port;
@@ -425,7 +425,7 @@ export class Proxy implements IProxy {
   // Since node 0.9.9, ECONNRESET on sockets are no longer hidden
   _onSocketError(socketDescription: string, err: NodeJS.ErrnoException) {
     if (err.errno === -54 || err.code === "ECONNRESET") {
-      console.debug(`Got ECONNRESET on ${socketDescription}, ignoring.`);
+      // console.debug(`Got ECONNRESET on ${socketDescription}, ignoring.`);
     } else {
       this._onError(`${socketDescription}_ERROR`, null, err);
     }
@@ -506,13 +506,13 @@ export class Proxy implements IProxy {
             conn.destroy();
           });
           conn.on("error", (err) => {
-            console.error("Connection error:");
-            console.error(err);
+            // console.error("Connection error:");
+            // console.error(err);
             conn.destroy();
           });
           socket.on("error", (err) => {
-            console.error("Socket error:");
-            console.error(err);
+            // console.error("Socket error:");
+            // console.error(err);
           });
           socket.pipe(conn);
           conn.pipe(socket);
@@ -605,22 +605,22 @@ export class Proxy implements IProxy {
             }
             delete results.httpsOptions.hosts;
             if (self.forceSNI && !hostname.match(/^[\d.]+$/)) {
-              console.debug(`creating SNI context for ${hostname}`);
+              // console.debug(`creating SNI context for ${hostname}`);
               hosts.forEach((host) => {
                 self.httpsServer!.addContext(host, results.httpsOptions);
                 self.sslServers[host] = { port: Number(self.httpsPort) };
               });
               return callback(null, self.httpsPort);
             } else {
-              console.debug(`starting server for ${hostname}`);
+              // console.debug(`starting server for ${hostname}`);
               results.httpsOptions.hosts = hosts;
               try {
                 self._createHttpsServer(
                   results.httpsOptions,
                   (port, httpsServer, wssServer) => {
-                    console.debug(
-                      `https server started for ${hostname} on ${port}`
-                    );
+                    // console.debug(
+                    //   `https server started for ${hostname} on ${port}`
+                    // );
                     const sslServer = {
                       server: httpsServer,
                       wsServer: wssServer,
@@ -677,8 +677,8 @@ export class Proxy implements IProxy {
         getHttpsServer(hostname, (err, port) => {
           process.nextTick(sem.leave.bind(sem));
           if (err) {
-            console.error("Error getting HTTPs server");
-            console.error(err);
+            // console.error("Error getting HTTPs server");
+            // console.error(err);
             return self._onError("OPEN_HTTPS_SERVER_ERROR", null, err);
           }
           return makeConnection(port);
@@ -718,8 +718,8 @@ export class Proxy implements IProxy {
   }
 
   _onError(kind: string, ctx: IContext | null, err: Error) {
-    console.error(kind);
-    console.error(err);
+    // console.error(kind);
+    // console.error(err);
 
     this.onErrorHandlers.forEach((handler) => handler(ctx, err, kind));
     if (ctx) {

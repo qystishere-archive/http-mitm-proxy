@@ -313,10 +313,10 @@ export class CA {
       certPem,
       (error) => {
         if (error) {
-          console.error(
-            `Failed to save certificate to disk in ${self.certsFolder}`,
-            error
-          );
+          // console.error(
+          //   `Failed to save certificate to disk in ${self.certsFolder}`,
+          //   error
+          // );
         }
       }
     );
@@ -325,10 +325,10 @@ export class CA {
       keyPrivatePem,
       (error) => {
         if (error) {
-          console.error(
-            `Failed to save private key to disk in ${self.keysFolder}`,
-            error
-          );
+          // console.error(
+          //   `Failed to save private key to disk in ${self.keysFolder}`,
+          //   error
+          // );
         }
       }
     );
@@ -337,10 +337,10 @@ export class CA {
       keyPublicPem,
       (error) => {
         if (error) {
-          console.error(
-            `Failed to save public key to disk in ${self.keysFolder}`,
-            error
-          );
+          // console.error(
+          //   `Failed to save public key to disk in ${self.keysFolder}`,
+          //   error
+          // );
         }
       }
     );

@@ -111,7 +111,7 @@ describe("proxy", function () {
     proxy.onError((ctx, err, errorKind) => {
       const url =
         ctx && ctx.clientToProxyRequest ? ctx.clientToProxyRequest.url : "";
-      console.log(`proxy error: ${errorKind} on ${url}:`, err);
+      // console.log(`proxy error: ${errorKind} on ${url}:`, err);
     });
   });
 
@@ -330,7 +330,7 @@ describe("proxy", function () {
           countString(body, "AAA", (count) => {
             assert.equal(5, count);
             proxyHttp(`${testUrlB}/1024.bin`, false, (errB, respB, bodyB) => {
-              if (errB) console.log(`errB: ${errB.toString()}`);
+              // if (errB) console.log(`errB: ${errB.toString()}`);
               let lenB = 0;
               if (bodyB.hasOwnProperty("length")) lenB = bodyB.length;
               assert.equal(1024, lenB);
